@@ -1,5 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from neo4j import GraphDatabase
 from deep_translator import GoogleTranslator
@@ -162,3 +164,9 @@ async def feedback(request: FeedbackRequest):
 @app.on_event("shutdown")
 def shutdown():
     driver.close()
+app.mount("/css", StaticFiles(directory="css"), name="css")
+app.mount("/js", StaticFiles(directory="js"), name="js")
+app.mount("/assets", StaticFiles(directory="assets"), name="assets")
+@app.get("/")
+async def serve_index():
+    return FileResponse("index.html")
