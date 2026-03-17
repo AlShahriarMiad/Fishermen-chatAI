@@ -5,6 +5,9 @@ from neo4j import GraphDatabase
 from deep_translator import GoogleTranslator
 import requests
 import langdetect
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 app = FastAPI()
 
@@ -19,9 +22,11 @@ app.add_middleware(
 OLLAMA_URL = "http://localhost:11434/api/chat"
 MODEL_NAME = "gemma3:1b"
 
+
 NEO4J_URI = "bolt://localhost:7687"
 NEO4J_USER = "neo4j"
-NEO4J_PASSWORD = "nej4nej4"
+NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD", "nej4nej4")
+
 
 driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
 conversation_history = []
