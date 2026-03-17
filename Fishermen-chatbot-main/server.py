@@ -135,6 +135,8 @@ async def chat(request: ChatRequest):
                         f"You MUST answer ONLY using the knowledge graph context provided in the user message. "
                         f"Do NOT use any outside knowledge or make assumptions beyond what is explicitly in the context. "
                         f"If the context does not contain enough information to answer, say you don't know. "
+                        f"**ALWAYS ask 1-2 clarifying questions** if query is vague/ambiguous (e.g., 'Which river?', 'What fish type?', 'Net size?'). "
+                        f"Keep fishing-focused: river, fish, nets, weather, boats. "
                         f"{language_instruction}"
                     )
                 },
