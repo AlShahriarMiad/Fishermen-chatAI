@@ -173,7 +173,10 @@ function showChatInterface(user) {
 async function handleChatSubmit(e) {
     e.preventDefault();
     
-    const message = chatInput.value.trim();
+    let message = chatInput.value.trim();
+    // Sanitize: Escape HTML/JS to prevent XSS
+    message = message.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
     if (!message) return;
     
     // Add user message to chat
