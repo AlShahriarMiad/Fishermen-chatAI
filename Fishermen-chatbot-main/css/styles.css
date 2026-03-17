@@ -831,3 +831,9 @@ textarea:focus {
   transition: 0.3s;
 }
 .dark-toggle:hover { color: var(--primary-color); transform: scale(1.1); }
+
+.export-btn {
+  background: none; border: none; color: var(--text-secondary);
+  cursor: pointer; font-size: 18px; padding: 8px; transition: 0.3s;
+}
+.export-btn:hover { color: var(--secondary-color); transform: scale(1.2); }

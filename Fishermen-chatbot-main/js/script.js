@@ -523,6 +523,25 @@ function updateChatHistoryUI() {
         document.querySelector('.chat-item').classList.add('active');
     }
 }
+// Export chat
+document.getElementById('export-chat').addEventListener('click', () => {
+  const chatHistory = getChatHistory();
+  if (!chatHistory.length) {
+    alert('No chat history to export. Start a conversation first.');
+    return;
+  }
+  const currentChat = chatHistory[0];
+  const safeTitle = (currentChat.title || 'chat').replace(/[^a-z0-9]/gi, '_');
+  const dataStr = JSON.stringify(currentChat, null, 2);
+  const blob = new Blob([dataStr], {type: 'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `fishermen-chat-${safeTitle}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
 
 function searchChatHistory() {
     const searchTerm = document.getElementById('search-chats').value.toLowerCase();
