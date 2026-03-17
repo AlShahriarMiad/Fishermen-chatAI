@@ -32,6 +32,18 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize the application
     initApp();
+
+    // Dark mode
+   const darkToggle = document.getElementById('dark-toggle');
+   if (darkToggle) {
+   const isDark = localStorage.getItem('darkMode') === 'true';
+   document.documentElement.classList.toggle('dark', isDark);
+   darkToggle.addEventListener('click', () => {
+   document.documentElement.classList.toggle('dark');
+   localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+    });
+}
+
     
     // Event Listeners
     if (loginForm) loginForm.addEventListener('submit', handleLogin);
