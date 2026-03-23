@@ -15,3 +15,7 @@ pip install -r requirements.txt
 start neo4j instance
 uvicorn server:app --reload
 Open index.html in browser
+
+
+## Architecture
+Fisherman Query → FastAPI → Neo4j RAG → Ollama → Bengali Reply
